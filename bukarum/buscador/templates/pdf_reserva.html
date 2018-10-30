@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <title>Buk-A-Rum</title>
+    </head>
+<body>
+<div class="container">
+    <div class="card mt-4 mb-4 shadow-sm">
+        <div class="card-header bg-dark text-light">
+            <h4 class="my-0 font-weight-normal">Número de reserva: {{ reserva.localizador }}</h4>
+        </div>
+        <div class="card-body bg-light">
+            <p class="card-title">
+            <strong>Fechas de estancia:</strong>
+            del {{ reserva.fecha_entrada|date:"SHORT_DATE_FORMAT" }} al {{ reserva.fecha_salida|date:"SHORT_DATE_FORMAT" }} (Noches: {{ reserva.numero_noches }})
+            </p>
+            <p><strong>Tipo de habitación:</strong> {{ reserva.habitacion.tipo.nombre }}</p>
+            <p><strong>Precio total:</strong> ${{ reserva.precio_total }}</p>
+            <h4>Comentarios:</h4>
+            {% if reserva.comentarios %}
+            <p>{{ reserva.comentarios }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

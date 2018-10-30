@@ -1,0 +1,39 @@
+{% extends 'base_panel.html' %}
+{% load mathfilters %}
+{% block body %}
+<div class="container">
+    <div class="justify-content-center">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Habitaciones disponibles</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-title">
+            <strong>Fechas seleccionadas:</strong>
+            del {{ fechas.entrada|date:"SHORT_DATE_FORMAT" }} al {{ fechas.salida|date:"SHORT_DATE_FORMAT" }} (Noches: {{ fechas.noches }})
+            </p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col col-md-auto">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Precio por noche</th>
+                    <th>Total estancia</th>
+                </tr>
+                </thead>
+                <tbody>
+        {% for tipo_habitacion in disponibles %}
+                <tr>
+                    <td><a href="{% url 'reservar' tipo_habitacion.id %}">{{ tipo_habitacion.nombre }}</a></td>
+                    <td class="text-right">${{ tipo_habitacion.precio }}</td>
+                    <td class="text-right">${{ tipo_habitacion.precio|mul:fechas.noches }}</td>
+                </tr>
+        {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

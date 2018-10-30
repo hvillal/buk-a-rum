@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+  <body class="bg-light">
+     <div class="container">
+      <div class="container mb-5 mt-5">
+         <div class="row justify-content-center">
+          <h3 class="display-4 text-muted">Buscador de habitaciones</h3>
+          </div>
+        </div>
+    <div class="container">
+         <div class="row justify-content-center">
+             <div class="col col-xs-auto col-sm-8 col-md-5 p-3">
+                  <form method="post">
+                      {% csrf_token %}
+                     <div class="form-group">
+                      <label for="username">Usuario</label>
+                      <input class="form-control" type="text" id="username" name="usuario" placeholder="Nombre de usuario" required>
+                        <div class="invalid-feedback">
+                          Ingrese su usuario.
+                        </div>
+                     </div>
+                     <div class="form-group">
+                      <label for="password">Contraseña</label>
+                      <input class="form-control" type="password" id="password" name="clave" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                          <small>Ingrese su contraseña.</small>
+                        </div>
+                     </div>
+                      <div class="container">
+                           <div class="row justify-content-center">
+                           <div class="col col-auto">
+                            <button class="btn btn-success" type="submit">Iniciar</button>
+                            </div>
+                          </div>
+                      </div>
+                      <section class="container text-danger mt-2">
+                          <p class="text-center">{{ sesion }}</p>
+                      </section>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+{% endblock %}

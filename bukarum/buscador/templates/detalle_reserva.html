@@ -1,0 +1,22 @@
+{% extends 'base_panel.html' %}
+{% block body %}
+<div class="container">
+    <div class="card mt-4 mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Número de reserva: {{ reserva.localizador }}<a href="{% url 'pdf_reserva' reserva.id %}" target="_blank" class="btn btn-danger ml-4"><i class="fa fa-file-pdf-o"></i></a></h4>
+        </div>
+        <div class="card-body">
+            <p class="card-title">
+            <strong>Fechas de estancia:</strong>
+            del {{ reserva.fecha_entrada|date:"SHORT_DATE_FORMAT" }} al {{ reserva.fecha_salida|date:"SHORT_DATE_FORMAT" }} (Noches: {{ reserva.numero_noches }})
+            </p>
+            <p class="card-text"><strong>Tipo de habitación:</strong> {{ reserva.habitacion.tipo.nombre }}</p>
+            <p class="card-text"><strong>Precio total:</strong> ${{ reserva.precio_total }}</p>
+            <h4>Comentarios:</h4>
+            {% if reserva.comentarios %}
+            <p>{{ reserva.comentarios }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

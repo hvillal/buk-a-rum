@@ -1,0 +1,28 @@
+{% extends 'base_panel.html' %}
+{% load staticfiles %}
+{% block body %}
+    <body class="bg-light">
+        <main role="main" class="container">
+            <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <h6 class="border-bottom border-gray pb-2 mb-0">Mis reservas</h6>
+                {% for reserva in reservas %}
+                <a href="{% url 'detalle_reserva' reserva.id %}">
+                    <div class="media text-muted pt-3">
+                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">{{ reserva.fecha_entrada }} al {{ reserva.fecha_salida }}</strong>
+                    <strong class="d-block text-gray-dark">{{ reserva.habitacion.tipo }}</strong>
+                    {% if reserva.comentarios %}
+                    {{ reserva.comentarios }}
+                    {% endif %}
+                    </p>
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </main>
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h2 class="display-4">{{ mensaje }}</h2>
+        </div>
+    </body>
+{% endblock %}

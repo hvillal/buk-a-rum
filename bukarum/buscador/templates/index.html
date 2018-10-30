@@ -1,0 +1,41 @@
+{% extends 'base_panel.html' %}
+{% block body %}
+  <div class="container">
+    <div class="container">
+        <div class="container mb-5 mt-5">
+            <h3 class="display-4 text-muted d-block text-center">Buscador de habitaciones</h3>
+            <p class="lead text-center">Selecciona la fecha de llegada y salida</p>
+        </div>
+    </div>
+    <div class="container">
+        <form method="post" action="{% url 'buscador' %}">
+        <div class="card-deck mb-3 text-center">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Llegada</h4>
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="text" id="fecha_entrada" name="fecha_entrada">
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Salida</h4>
+                </div>
+                <div class="card-body">
+                    <input class="form-control" type="text" id="fecha_salida" name="fecha_salida">
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+          <div class="container">
+               <div class="row justify-content-center">
+               <div class="col col-md-4">
+                <button class="btn btl-lg btn-block btn-success" type="submit">Buscar</button>
+                </div>
+              </div>
+          </div>
+        </form>
+    </div>
+  </div>
+{% endblock %}
