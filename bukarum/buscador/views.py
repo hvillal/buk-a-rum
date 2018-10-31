@@ -229,8 +229,8 @@ def buscador(request):
             fecha_entrada = convierte_fecha_amd(fe)
             fecha_salida = convierte_fecha_amd(fs)
 
-            if fecha_entrada is None or fecha_salida is None:
-                return render(request, 'error.html', {'mensaje': 'Error en formato de fecha'})
+            if fecha_entrada is None or fecha_salida is None or fecha_entrada >= fecha_salida:
+                return render(request, 'error.html', {'mensaje': 'Error en fechas seleccionadas'})
 
             fechas['entrada'] = fecha_entrada
             fechas['salida'] = fecha_salida
